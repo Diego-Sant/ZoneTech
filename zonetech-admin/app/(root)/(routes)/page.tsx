@@ -16,11 +16,7 @@ const RootPage = () => {
     }
   }, [isOpen, onOpen])
 
-  return (
-    <div>
-      Hello
-    </div>
-  )
+  return null;
 }
 
 export default RootPage

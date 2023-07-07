@@ -38,7 +38,7 @@ export const StoreModal = () => {
 
             const response = await axios.post('/api/lojas', values);
 
-            toast.success("Loja criada com sucesso!")
+            window.location.assign(`/${response.data.id}`) // Feito isso ao em vez do router pois ele vai atualizar completamente a aba e o router estava tendo problemas em relação a isso
         } catch (error) {
             toast.error("Algo deu errado ao continuar.");
         } finally {
