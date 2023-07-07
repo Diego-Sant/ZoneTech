@@ -1,6 +1,14 @@
 npx create-next-app@latest my-app --typescript --tailwind --eslint
 npx shadcn-ui@latest init
 npm install zustand
+npm install axios
+npm install react-hot-toast
+
+npm i -D prisma
+npm install @prisma/client
+npx prisma init
+npx prisma generate
+npx prisma db push
 
 componentes(exemplo):
 npx shadcn-ui@latest add button
