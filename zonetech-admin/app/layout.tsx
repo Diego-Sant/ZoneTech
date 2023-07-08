@@ -17,11 +17,7 @@ export const metadata = {
   description: 'Site E-Commerce chamado ZoneTech inspirado na Kabum!',
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <ClerkProvider localization={ptBR}>
         <html lang="pt-BR">
