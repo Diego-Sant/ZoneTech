@@ -1,4 +1,5 @@
 "use client"
+// Marcado como componente do cliente
 
 import * as React from "react"
 import { DialogProps } from "@radix-ui/react-dialog"

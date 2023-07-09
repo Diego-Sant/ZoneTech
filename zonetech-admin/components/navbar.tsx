@@ -16,6 +16,7 @@ const Navbar = async () => {
     redirect("/entrar");
   }
 
+  // Procura a loja comparando com o id que está na url
   const stores = await prismadb.store.findMany({
     where: {
       userId

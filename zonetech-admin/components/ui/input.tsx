@@ -1,3 +1,6 @@
+"use client"
+// Marcado como componente do cliente
+
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
