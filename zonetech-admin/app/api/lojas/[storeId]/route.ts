@@ -16,7 +16,7 @@ export async function PATCH (
         const {name} = body;
 
         if(!userId) {
-            return new NextResponse("Não autorizado", {status: 401});
+            return new NextResponse("Não autenticado!", {status: 401});
         }
 
         if (!name) {
@@ -54,7 +54,7 @@ export async function DELETE (
         const { userId } = auth();
 
         if(!userId) {
-            return new NextResponse("Não autorizado", {status: 403});
+            return new NextResponse("Não autenticado!", {status: 403});
         }
 
         if (!params.storeId) {

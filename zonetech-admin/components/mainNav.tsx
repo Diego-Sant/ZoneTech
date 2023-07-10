@@ -21,6 +21,12 @@ export function MainNav({className, ...props}: React.HTMLAttributes<HTMLElement>
             
             label: 'Configurações',
             active: pathname === `/${params.storeId}/configuracoes` // Quando estiver nesse pathname, ele será considerado active
+        },
+        {
+            href: `/${params.storeId}/painel`, // URL onde irá ser enviado
+            
+            label: 'Painel publicitário',
+            active: pathname === `/${params.storeId}/painel` // Quando estiver nesse pathname, ele será considerado active
         }
     ];
 
