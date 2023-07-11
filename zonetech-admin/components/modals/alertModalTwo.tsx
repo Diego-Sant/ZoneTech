@@ -9,17 +9,15 @@ import { BillboardColumn } from "@/app/(dashboard)/[storeId]/(routes)/painel/com
 import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/ui/modal";
 
-interface AlertModalProps {
+interface AlertModalTwoProps {
     isOpen: boolean;
     onClose: () => void;
     onConfirm: () => void;
     loading: boolean;
-    store?: Store;
-    billboard?: Billboard;
-    useCurrentStore?: boolean;
+    billboardColumn?: BillboardColumn;
 }
 
-export const AlertModal: React.FC<AlertModalProps> = ({ isOpen, onClose, onConfirm, loading, store, billboard, useCurrentStore = true}) => {
+export const AlertModalTwo: React.FC<AlertModalTwoProps> = ({ isOpen, onClose, onConfirm, loading, billboardColumn}) => {
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
@@ -30,15 +28,10 @@ export const AlertModal: React.FC<AlertModalProps> = ({ isOpen, onClose, onConfi
         return null;
     }
 
-    const currentStore = useCurrentStore ? store?.name : undefined;
-    const currentBillboard = !useCurrentStore ? billboard?.label : undefined;
-
-    const noContent = !currentStore && !currentBillboard;
-    const title = noContent ? "Tem certeza que deseja excluir esse painel?" : `Você tem certeza que deseja excluir "${useCurrentStore ? currentStore : currentBillboard}"?`;
-    const description = noContent ? "Esse painel será perdida para sempre! (é muito tempo!)" : `"${useCurrentStore ? currentStore : currentBillboard}" será perdida para sempre! (é muito tempo!)`;
+    const currentBillboardColumn = billboardColumn?.label
 
     return (
-        <Modal title={title} description={description} isOpen={isOpen} onClose={onClose}>
+        <Modal title={`Você tem certeza que deseja excluir "${currentBillboardColumn}"?`} description={`"${currentBillboardColumn}" será perdida para sempre! (é muito tempo!)`} isOpen={isOpen} onClose={onClose}>
             <div className="pt-6 space-x-2 flex items-center justify-end w-full">
                 <Button disabled={loading} variant="outline" onClick={onClose}>
                     Cancelar

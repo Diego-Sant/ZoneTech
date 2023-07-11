@@ -4,6 +4,8 @@ npm install zustand
 npm install axios
 npm install react-hot-toast
 
+npm i date-fns
+
 npm i -D prisma
 npm install @prisma/client
 npx prisma init

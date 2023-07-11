@@ -55,7 +55,7 @@ export const ApiAlert: React.FC<ApiAlertProps> = ({ title, description, variant 
                     {description}
                 </code>
                 {isHovered && 
-                    <Button className="absolute top-0 sm:top-7 right-4 mt-3 sm:mt-0" variant="outline" size="icon" onClick={onCopy}>
+                    <Button className="absolute top-0 sm:top-2 lg:top-7 right-4 mt-3 sm:mt-0" variant="outline" size="icon" onClick={onCopy}>
                         <Copy className="h-4 w-4" />
                     </Button>
                 }

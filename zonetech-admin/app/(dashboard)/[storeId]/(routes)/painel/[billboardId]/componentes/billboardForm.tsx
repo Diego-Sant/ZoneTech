@@ -17,8 +17,6 @@ import { Separator } from "@/components/ui/separator";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alertModal";
-import { ApiAlert } from "@/components/ui/apiAlert";
-import { useOrigin } from "@/hooks/useOrigin";
 
 import { Trash } from "lucide-react";
 import { toast } from "react-hot-toast";
@@ -29,8 +27,8 @@ interface BillboardFormProps {
 }
 
 const formSchema = z.object({
-    label: z.string().min(2),
-    imageUrl: z.string().min(1)
+    label: z.string().min(2, "O painel precisa ter pelo menos 2 caracteres!"),
+    imageUrl: z.string().min(1, "A imagem é obrigatória!")
 });
 
 type BillboardFormValues = z.infer<typeof formSchema>;
@@ -38,7 +36,6 @@ type BillboardFormValues = z.infer<typeof formSchema>;
 export const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
     const params = useParams();
     const router = useRouter();
-    const origin = useOrigin();
 
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -68,7 +65,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => 
             }
             
             router.refresh();
-            router.push(`/${params.storeId}/painel`)
+            router.push(`/${params.storeId}/painel`) // Ao apertar em criar painel ou salvar mudanças irá ser enviado para o menu de painel publicitário
             toast.success(toastMessage)
         } catch (error) {
             toast.error("Algo de errado aconteceu, tente novamente mais tarde!")
@@ -83,7 +80,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => 
             await axios.delete(`/api/${params.storeId}/painel/${params.billboardId}`);
             
             router.refresh();
-            router.push("/"); // Feito isso para caso tenha apenas uma loja e ela for excluida, será enviado para a tela de criar uma loja nova
+            router.push(`/${params.storeId}/painel`); // Feito isso para caso tenha apenas uma loja e ela for excluida, será enviado para a tela de criar uma loja nova
             toast.success("Painel excluído com sucesso!")
         } catch (error) {
             console.log(error)
@@ -131,7 +128,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => 
                     <Button disabled={loading} type="submit">{action}</Button>
                 </form>
             </Form>
-            <Separator />
         </>
     )
 }
