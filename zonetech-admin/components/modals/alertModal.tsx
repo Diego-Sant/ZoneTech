@@ -15,11 +15,9 @@ interface AlertModalProps {
     onConfirm: () => void;
     loading: boolean;
     store?: Store;
-    billboard?: Billboard;
-    useCurrentStore?: boolean;
 }
 
-export const AlertModal: React.FC<AlertModalProps> = ({ isOpen, onClose, onConfirm, loading, store, billboard, useCurrentStore = true}) => {
+export const AlertModal: React.FC<AlertModalProps> = ({ isOpen, onClose, onConfirm, loading, store}) => {
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
@@ -30,12 +28,11 @@ export const AlertModal: React.FC<AlertModalProps> = ({ isOpen, onClose, onConfi
         return null;
     }
 
-    const currentStore = useCurrentStore ? store?.name : undefined;
-    const currentBillboard = !useCurrentStore ? billboard?.label : undefined;
+    const currentStore = store?.name;
 
-    const noContent = !currentStore && !currentBillboard;
-    const title = noContent ? "Tem certeza que deseja excluir esse painel?" : `Você tem certeza que deseja excluir "${useCurrentStore ? currentStore : currentBillboard}"?`;
-    const description = noContent ? "Esse painel será perdida para sempre! (é muito tempo!)" : `"${useCurrentStore ? currentStore : currentBillboard}" será perdida para sempre! (é muito tempo!)`;
+    const noContent = !currentStore;
+    const title = noContent ? "Tem certeza que deseja excluir esse painel?" : `Você tem certeza que deseja excluir "${currentStore}"?`;
+    const description = noContent ? "Esse painel será perdido para sempre! (é muito tempo!)" : `"${currentStore}" será perdida para sempre! (é muito tempo!)`;
 
     return (
         <Modal title={title} description={description} isOpen={isOpen} onClose={onClose}>

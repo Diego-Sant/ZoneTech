@@ -93,7 +93,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => 
     
     return (
         <>
-            <AlertModal isOpen={open} onClose={() => setOpen(false)} onConfirm={onDelete} loading={loading} billboard={initialData!} />
+            <AlertModal isOpen={open} onClose={() => setOpen(false)} onConfirm={onDelete} loading={loading} />
             <div className="flex items-center justify-between">
                 <Heading title={title} description={description} />
                 {initialData && (
@@ -117,9 +117,9 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         <FormField control={form.control} name="label" render={({field}) => (
                             <FormItem>
-                                <FormLabel>Painel</FormLabel>
+                                <FormLabel>Título</FormLabel>
                                 <FormControl>
-                                    <Input disabled={loading} placeholder="Nome do painel" {...field} />
+                                    <Input disabled={loading} placeholder="Mínimo de 2 caracteres" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>

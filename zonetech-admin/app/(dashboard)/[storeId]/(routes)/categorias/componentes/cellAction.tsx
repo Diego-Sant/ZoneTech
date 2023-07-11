@@ -5,10 +5,11 @@ import { useState } from "react";
 
 import { useParams, useRouter } from "next/navigation";
 
-import { BillboardColumn } from "./columns";
+import { CategoryColumn } from "./columns";
 import { DropdownMenuTrigger, DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { AlertModal } from "@/components/modals/alertModal";
+
+import { AlertModalTwo } from "@/components/modals/alertModalTwo";
 
 import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
 
@@ -17,7 +18,7 @@ import { toast } from "react-hot-toast";
 import axios from "axios";
 
 interface CellActionProps {
-    data: BillboardColumn;
+    data: CategoryColumn;
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
@@ -35,13 +36,13 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
     const onDelete = async () => {
         try {
             setLoading(true);
-            await axios.delete(`/api/${params.storeId}/painel/${data.id}`);
+            await axios.delete(`/api/${params.storeId}/categorias/${data.id}`);
             
             router.refresh();
-            toast.success("Painel excluído com sucesso!")
+            toast.success("Categoria excluída com sucesso!")
         } catch (error) {
             console.log(error)
-            toast.error("Tenha certeza de remover todos as categorias dentro desse painel primeiro!")
+            toast.error("Tenha certeza de remover todos os produtos dentro dessa categoria primeiro!")
         } finally {
             setLoading(false);
             setOpen(false);
@@ -50,7 +51,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
 
     return (
         <>
-            <AlertModal isOpen={open} onClose={() => setOpen(false)} onConfirm={onDelete} loading={loading} />
+            <AlertModalTwo isOpen={open} onClose={() => setOpen(false)} onConfirm={onDelete} loading={loading} /> {/* Tive que criar o AlertModalTwo pois o primeiro AlertModal já tinha a mensagem para a exclusão do painel */}
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Button variant="ghost" className="h-8 w-8 p-0">
@@ -66,7 +67,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
                         <Copy className="mr-2 h-4 w-4" />
                         Copiar ID
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/painel/${data.id}`)}> {/* O ${params.billboardId} enviava para o "criar painel", já o data.id envia corretamente para editar */}
+                    <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/categorias/${data.id}`)}>
                         <Edit className="mr-2 h-4 w-4" />
                         Atualizar
                     </DropdownMenuItem>

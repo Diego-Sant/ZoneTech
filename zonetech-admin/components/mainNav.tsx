@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
 
-import { AlignJustify, Home, Image, Settings } from "lucide-react";
+import { AlignJustify, Home, Image, PanelTopClose, Settings } from "lucide-react";
 
 export function MainNav({className, ...props}: React.HTMLAttributes<HTMLElement>) {
     const pathname = usePathname();
@@ -21,7 +21,7 @@ export function MainNav({className, ...props}: React.HTMLAttributes<HTMLElement>
 
     useEffect(() => {
         const handleResize = () => {
-          setIsMobile(window.innerWidth <= 740);
+          setIsMobile(window.innerWidth <= 780);
         };
     
         handleResize();
@@ -41,18 +41,24 @@ export function MainNav({className, ...props}: React.HTMLAttributes<HTMLElement>
             active: pathname === `/${params.storeId}` // Quando estiver nesse pathname, ele será considerado active
         },
         {
-            href: `/${params.storeId}/configuracoes`, // URL onde irá ser enviado
-            icon: <Settings className="w-4 h-4 mr-2" />,
-            label: 'Configurações',
-            active: pathname === `/${params.storeId}/configuracoes` // Quando estiver nesse pathname, ele será considerado active
-        },
-        {
             href: `/${params.storeId}/painel`, // URL onde irá ser enviado
             // eslint-disable-next-line jsx-a11y/alt-text
             icon: <Image className="w-4 h-4 mr-2" />,
             label: 'Painel publicitário',
             active: pathname === `/${params.storeId}/painel` // Quando estiver nesse pathname, ele será considerado active
-        }
+        },
+        {
+          href: `/${params.storeId}/categorias`, // URL onde irá ser enviado
+          icon: <PanelTopClose className="w-4 h-4 mr-2" />,
+          label: 'Categorias',
+          active: pathname === `/${params.storeId}/categorias` // Quando estiver nesse pathname, ele será considerado active
+        },
+        {
+          href: `/${params.storeId}/configuracoes`, // URL onde irá ser enviado
+          icon: <Settings className="w-4 h-4 mr-2" />,
+          label: 'Configurações',
+          active: pathname === `/${params.storeId}/configuracoes` // Quando estiver nesse pathname, ele será considerado active
+        },
     ];
 
     if (isMobile) {
