@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 
 import { BillboardColumn } from "./columns";
-import { DropdownMenuTrigger, DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuItem } from "@/components/ui/dropdown-menu";
+import { DropdownMenuTrigger, DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuItem } from "@/components/ui/dropdownMenu";
 import { Button } from "@/components/ui/button";
 import { AlertModal } from "@/components/modals/alertModal";
 

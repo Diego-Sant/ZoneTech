@@ -5,11 +5,10 @@ import { useState } from "react";
 
 import { useParams, useRouter } from "next/navigation";
 
-import { CategoryColumn } from "./columns";
+import { ProductColumn } from "./columns";
 import { DropdownMenuTrigger, DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuItem } from "@/components/ui/dropdownMenu";
 import { Button } from "@/components/ui/button";
-
-import { AlertModalTwo } from "@/components/modals/alertModalTwo";
+import { AlertModal } from "@/components/modals/alertModal";
 
 import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
 
@@ -18,7 +17,7 @@ import { toast } from "react-hot-toast";
 import axios from "axios";
 
 interface CellActionProps {
-    data: CategoryColumn;
+    data: ProductColumn;
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
@@ -36,13 +35,13 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
     const onDelete = async () => {
         try {
             setLoading(true);
-            await axios.delete(`/api/${params.storeId}/categorias/${data.id}`);
+            await axios.delete(`/api/${params.storeId}/produtos/${data.id}`);
             
             router.refresh();
-            toast.success("Categoria excluída com sucesso!")
+            toast.success("Produto excluído com sucesso!")
         } catch (error) {
             console.log(error)
-            toast.error("Tenha certeza de remover todos os produtos dentro dessa categoria primeiro!")
+            toast.error("Algo errado aconteceu. Tente novamente mais tarde!")
         } finally {
             setLoading(false);
             setOpen(false);
@@ -51,7 +50,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
 
     return (
         <>
-            <AlertModalTwo isOpen={open} onClose={() => setOpen(false)} onConfirm={onDelete} loading={loading} /> {/* Tive que criar o AlertModalTwo pois o primeiro AlertModal já tinha a mensagem para a exclusão do painel */}
+            <AlertModal isOpen={open} onClose={() => setOpen(false)} onConfirm={onDelete} loading={loading} />
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Button variant="ghost" className="h-8 w-8 p-0">
@@ -67,7 +66,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
                         <Copy className="mr-2 h-4 w-4" />
                         Copiar ID
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/categorias/${data.id}`)}>
+                    <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/produtos/${data.id}`)}> {/* O ${params.billboardId} enviava para o "criar produtos", já o data.id envia corretamente para editar */}
                         <Edit className="mr-2 h-4 w-4" />
                         Atualizar
                     </DropdownMenuItem>

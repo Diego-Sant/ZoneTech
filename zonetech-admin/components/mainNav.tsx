@@ -8,10 +8,10 @@ import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdownMenu";
 import { Button } from "./ui/button";
 
-import { AlignJustify, Hexagon, Home, Image, Palette, PanelTopClose, Settings } from "lucide-react";
+import { AlignJustify, Hexagon, Home, Image, Laptop, Palette, PanelTopClose, Settings } from "lucide-react";
 
 export function MainNav({className, ...props}: React.HTMLAttributes<HTMLElement>) {
     const pathname = usePathname();
@@ -21,7 +21,7 @@ export function MainNav({className, ...props}: React.HTMLAttributes<HTMLElement>
 
     useEffect(() => {
         const handleResize = () => {
-          setIsMobile(window.innerWidth <= 890);
+          setIsMobile(window.innerWidth <= 960);
         };
     
         handleResize();
@@ -64,6 +64,12 @@ export function MainNav({className, ...props}: React.HTMLAttributes<HTMLElement>
           icon: <Palette className="w-4 h-4 mr-2" />,
           label: 'Cores',
           active: pathname === `/${params.storeId}/cores` // Quando estiver nesse pathname, ele será considerado active
+        },
+        {
+          href: `/${params.storeId}/produtos`, // URL onde irá ser enviado
+          icon: <Laptop className="w-4 h-4 mr-2" />,
+          label: 'Produtos',
+          active: pathname === `/${params.storeId}/produtos` // Quando estiver nesse pathname, ele será considerado active
         },
         {
           href: `/${params.storeId}/configuracoes`, // URL onde irá ser enviado
