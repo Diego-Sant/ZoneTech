@@ -21,7 +21,7 @@ export function MainNav({className, ...props}: React.HTMLAttributes<HTMLElement>
 
     useEffect(() => {
         const handleResize = () => {
-          setIsMobile(window.innerWidth <= 1090);
+          setIsMobile(window.innerWidth <= 1200);
         };
     
         handleResize();
@@ -96,11 +96,11 @@ export function MainNav({className, ...props}: React.HTMLAttributes<HTMLElement>
                 <DropdownMenuLabel className="flex justify-center items-center">Menu Responsivo</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 {routes.map((route) => (
-                  <DropdownMenuItem key={route.href}>
-                    <Link href={route.href} className={cn("text-sm flex items-center font-medium transition-colors hover:text-primary", route.active ? "text-black dark:text-white" : "text-muted-foreground")}>
-                      {route.icon}{route.label}
-                    </Link>
-                  </DropdownMenuItem>
+                  <Link key={route.href} href={route.href} className={cn("text-sm flex items-center font-medium transition-colors hover:text-primary", route.active ? "text-black dark:text-white" : "text-muted-foreground")}>
+                    <DropdownMenuItem className="cursor-pointer">
+                        {route.icon}{route.label}
+                    </DropdownMenuItem>
+                  </Link>
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>

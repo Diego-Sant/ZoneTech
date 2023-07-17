@@ -16,3 +16,7 @@ componentes(exemplo):
 npx shadcn-ui@latest add button
 
 npm i stripe
+
+npm i recharts
+
+npm i next-themes

@@ -6,6 +6,7 @@ import { UserButton, auth } from "@clerk/nextjs"
 
 import { MainNav } from "./mainNav"
 import StoreSwitcher from "./storeSwitcher"
+import { ModeToggle } from "./themeToggles";
 
 import { redirect } from "next/navigation";
 
@@ -29,6 +30,7 @@ const Navbar = async () => {
         <StoreSwitcher items={stores} />
         <MainNav className="mx-6" />
         <div className="flex items-center ml-auto space-x-4">
+          <ModeToggle />
           <UserButton afterSignOutUrl="/" /> {/* Feito isso pois normalmente quando o usuário desloga no clerk ele manda para a página deles */}
         </div>
       </div>
