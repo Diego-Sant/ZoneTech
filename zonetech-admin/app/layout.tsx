@@ -13,8 +13,8 @@ import { ToasterProvider } from '@/providers/toastProvider';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'ZoneTech',
-  description: 'Site E-Commerce chamado ZoneTech inspirado na Kabum!',
+  title: 'ZoneTech-ADMIN',
+  description: 'Dashboard para controlar o funcionamento das lojas.',
 }
 
 export default function RootLayout({children}: {children: React.ReactNode}) {

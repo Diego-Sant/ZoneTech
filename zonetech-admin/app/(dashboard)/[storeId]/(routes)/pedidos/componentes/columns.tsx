@@ -56,7 +56,7 @@ export const columns: ColumnDef<OrderColumn>[] = [
             height: "10px",
             borderRadius: "50%",
             backgroundColor: dotColor,
-            marginLeft: "25px",
+            marginLeft: "13px",
             marginRight: "auto",
           }}
         ></div>

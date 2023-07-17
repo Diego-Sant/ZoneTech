@@ -14,3 +14,5 @@ npx prisma db push
 
 componentes(exemplo):
 npx shadcn-ui@latest add button
+
+npm i stripe
